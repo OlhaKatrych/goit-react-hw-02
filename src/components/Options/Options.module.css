@@ -1,0 +1,17 @@
+.containerOptions {
+
+    margin-bottom: 20px;
+}
+
+.listButtons {
+
+    display: flex;
+    gap: 8px;
+}
+
+.btnText {
+    padding: 8px;
+
+    font-size: 18px;
+    text-transform: capitalize;
+}
