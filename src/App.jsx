@@ -12,11 +12,19 @@ const feedbackObj = {
 };
 
 function App() {
-  const [feedbacks, setFeedbacks] = useState(feedbackObj);
+  const [feedbacks, setFeedbacks] = useState(() => {
+    const stringified = localStorage.getItem("feedbacks");
+    if (!stringified) return feedbackObj;
+    const parsedEmails = JSON.parse(stringified);
+    return parsedEmails;
+  });
   const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
   const positiveFeedbackPercent = Math.round(
     ((feedbacks.good + feedbacks.neutral) / totalFeedback) * 100
   );
+  useEffect(() => {
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+  }, [feedbacks]);
   function updateFeedback(feedbackType) {
     setFeedbacks((prevState) => ({
       ...prevState,
@@ -37,7 +45,11 @@ function App() {
         onReset={handleReset}
       />
       {totalFeedback > 0 ? (
-        <Feedback feedbackValue={feedbacks} totalFeedbackProp={totalFeedback} positiveFeedbackProp={positiveFeedbackPercent} />
+        <Feedback
+          feedbackValue={feedbacks}
+          totalFeedbackProp={totalFeedback}
+          positiveFeedbackProp={positiveFeedbackPercent}
+        />
       ) : (
         <Notification />
       )}
