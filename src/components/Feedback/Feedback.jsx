@@ -1,16 +1,11 @@
 import css from "./Feedback.module.css";
 
 function Feedback({ feedbackValue }) {
-  const properties = [];
-  const keys = Object.keys(feedbackValue);
-  for (const key of keys) {
-    properties.push(key);
-  }
-
+  const arrFeedback = Object.keys(feedbackValue);
   return (
     <div className={css.containerFeedback}>
       <ul>
-        {properties.map((item) => {
+        {arrFeedback.map((item) => {
           return (
             <li key={item}>
               <p className={css.textFeedback}>
