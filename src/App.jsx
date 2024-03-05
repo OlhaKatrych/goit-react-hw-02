@@ -2,7 +2,8 @@ import css from "./App.module.css";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
-import { useState } from "react";
+import Notification from "./components/Notification/Notification";
+import { useEffect, useState } from "react";
 
 const feedbackObj = {
   good: 0,
@@ -18,11 +19,18 @@ function App() {
       [feedbackType]: prevState[feedbackType] + 1,
     }));
   }
+
+  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+
   return (
     <div>
       <Description />
       <Options feedbackData={feedbacks} onUpdateFeedback={updateFeedback} />
-      <Feedback feedbackValue={feedbacks} />
+      {totalFeedback > 0 ? (
+        <Feedback feedbackValue={feedbacks} />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }
