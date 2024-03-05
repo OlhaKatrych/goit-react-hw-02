@@ -1,0 +1,11 @@
+.containerFeedback {
+
+    padding: 10px;
+}
+
+.textFeedback {
+
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+}

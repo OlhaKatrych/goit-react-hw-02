@@ -8,13 +8,13 @@ function Feedback({ feedbackValue }) {
   }
 
   return (
-    <div>
+    <div className={css.containerFeedback}>
       <ul>
-        {[...properties].map((item) => {
+        {properties.map((item) => {
           return (
             <li key={item}>
-              <p>
-                {item}:{feedbackValue[item]}
+              <p className={css.textFeedback}>
+                {item}: {feedbackValue[item]}
               </p>
             </li>
           );

@@ -1,15 +1,11 @@
 import css from "./Options.module.css";
 
 function Options({ feedbackData }) {
-  const keyFeedbackData = [];
-  for (const feedback in feedbackData) {
-    keyFeedbackData.push(feedback);
-  }
-
+  const arrOptions = Object.keys(feedbackData);
   return (
     <div className={css.containerOptions}>
       <ul className={css.listButtons}>
-        {keyFeedbackData.map((item) => {
+        {arrOptions.map((item) => {
           return (
             <li key={item}>
               <button className={css.btnText}>{item}</button>
