@@ -1,6 +1,6 @@
 import css from "./Feedback.module.css";
 
-function Feedback({ feedbackValue }) {
+function Feedback({ feedbackValue, totalFeedbackProp, positiveFeedbackProp }) {
   const arrFeedback = Object.keys(feedbackValue);
   return (
     <div className={css.containerFeedback}>
@@ -14,6 +14,12 @@ function Feedback({ feedbackValue }) {
             </li>
           );
         })}
+        {totalFeedbackProp > 0 ? (
+          <p className={css.textFeedback}>total: {totalFeedbackProp}</p>
+        ) : null}
+        {totalFeedbackProp > 0 ? (
+          <p className={css.textFeedback}>positive: {positiveFeedbackProp}&#37;</p>
+        ) : null}
       </ul>
     </div>
   );

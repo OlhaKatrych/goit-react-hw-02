@@ -14,6 +14,9 @@ const feedbackObj = {
 function App() {
   const [feedbacks, setFeedbacks] = useState(feedbackObj);
   const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+  const positiveFeedbackPercent = Math.round(
+    ((feedbacks.good + feedbacks.neutral) / totalFeedback) * 100
+  );
   function updateFeedback(feedbackType) {
     setFeedbacks((prevState) => ({
       ...prevState,
@@ -34,7 +37,7 @@ function App() {
         onReset={handleReset}
       />
       {totalFeedback > 0 ? (
-        <Feedback feedbackValue={feedbacks} />
+        <Feedback feedbackValue={feedbacks} totalFeedbackProp={totalFeedback} positiveFeedbackProp={positiveFeedbackPercent} />
       ) : (
         <Notification />
       )}
