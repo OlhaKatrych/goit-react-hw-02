@@ -13,19 +13,26 @@ const feedbackObj = {
 
 function App() {
   const [feedbacks, setFeedbacks] = useState(feedbackObj);
+  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
   function updateFeedback(feedbackType) {
     setFeedbacks((prevState) => ({
       ...prevState,
       [feedbackType]: prevState[feedbackType] + 1,
     }));
   }
-
-  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+  function handleReset() {
+    setFeedbacks(feedbackObj);
+  }
 
   return (
     <div>
       <Description />
-      <Options feedbackData={feedbacks} onUpdateFeedback={updateFeedback} />
+      <Options
+        feedbackData={feedbacks}
+        totalFeedbackProp={totalFeedback}
+        onUpdateFeedback={updateFeedback}
+        onReset={handleReset}
+      />
       {totalFeedback > 0 ? (
         <Feedback feedbackValue={feedbacks} />
       ) : (
