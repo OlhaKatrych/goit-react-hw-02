@@ -1,6 +1,6 @@
 import css from "./Options.module.css";
 
-function Options({ feedbackData }) {
+function Options({ feedbackData, onUpdateFeedback }) {
   const arrOptions = Object.keys(feedbackData);
   return (
     <div className={css.containerOptions}>
@@ -8,7 +8,9 @@ function Options({ feedbackData }) {
         {arrOptions.map((item) => {
           return (
             <li key={item}>
-              <button className={css.btnText}>{item}</button>
+              <button className={css.btnText} onClick={()=> onUpdateFeedback(item)}>
+                {item}
+              </button>
             </li>
           );
         })}

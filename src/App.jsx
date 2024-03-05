@@ -12,12 +12,17 @@ const feedbackObj = {
 
 function App() {
   const [feedbacks, setFeedbacks] = useState(feedbackObj);
-
+  function updateFeedback(feedbackType) {
+    setFeedbacks((prevState) => ({
+      ...prevState,
+      [feedbackType]: prevState[feedbackType] + 1,
+    }));
+  }
   return (
     <div>
       <Description />
-      <Options feedbackData={feedbacks} />
-      <Feedback feedbackValue={feedbacks}/>
+      <Options feedbackData={feedbacks} onUpdateFeedback={updateFeedback} />
+      <Feedback feedbackValue={feedbacks} />
     </div>
   );
 }
